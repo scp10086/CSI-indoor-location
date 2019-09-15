@@ -3,7 +3,7 @@
 
 # 教程
 
-[CSI工具中文教程](https://blog.csdn.net/u014645508/article/details/81359409)
+[CSI工具中文安装教程](https://blog.csdn.net/u014645508/article/details/81359409)
 
 [如何切换Linux内核](https://blog.csdn.net/tenorange/article/details/80914559)
 
