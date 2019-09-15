@@ -13,6 +13,8 @@
 
 # 资源
 
+[ubuntu 12.04.5](http://releases.ubuntu.com/12.04.5/)
+
 [CSI工具](https://github.com/dhalperi/linux-80211n-csitool/)
 
 
