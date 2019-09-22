@@ -18,3 +18,8 @@
 [CSI工具](https://github.com/dhalperi/linux-80211n-csitool/)
 
 
+# 实际过程中遇到的问题
+
+[获取csi文件，并用MATLAB处理](https://blog.csdn.net/sodleave/article/details/44455903)
+
+[Matlab以MEX方式调用C源代码](http://blog.sina.com.cn/s/blog_468651400100coas.html)
