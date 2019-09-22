@@ -23,3 +23,7 @@
 [获取csi文件，并用MATLAB处理](https://blog.csdn.net/sodleave/article/details/44455903)
 
 [Matlab以MEX方式调用C源代码](http://blog.sina.com.cn/s/blog_468651400100coas.html)
+
+# 图片
+
+![matlab 动态显示CSI](https://github.com/scp10086/CSI-indoor-location/blob/master/picture/IMG_20190922_165634.jpg)
