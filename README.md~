@@ -28,8 +28,4 @@
 
 ![matlab 动态显示CSI](https://github.com/scp10086/CSI-indoor-location/blob/master/picture/IMG_20190922_165634.jpg)
 
-# 自动化脚本要求
-1. 自动编号文件 命名格式 点-第几次
-2. 自动采集数据（30秒 ，每秒5个包，共150个包，每个地点测试5次，共计750包）
-3. 受到我的控制
-4. 
+
