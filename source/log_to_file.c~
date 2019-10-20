@@ -43,7 +43,7 @@ char input[20];
 int input_num;
 int max_capture_num = 100;
 char address[30];
-char head[]= "./first_test/s";
+char head[]= "./first_test/";
 char end[]=".data";
 	/* Make sure usage is correct */
 	//check_usage(argc, argv);
