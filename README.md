@@ -11,6 +11,7 @@
 
 [CSI工具主页](https://dhalperi.github.io/linux-80211n-csitool/index.html)
 
+[CSI 研究总结](https://blog.csdn.net/guolinlin11/article/details/51559317)
 # 资源
 
 [ubuntu 12.04.5](http://releases.ubuntu.com/12.04.5/)
