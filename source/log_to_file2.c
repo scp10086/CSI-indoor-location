@@ -36,48 +36,13 @@ int main(int argc, char** argv)
 	int ret;
 	unsigned short l, l2;
 	int count = 0;
-int point_count = 1;
-char str_point_count[20];
-char cell_count = 0;
-char input[20];
-int input_num;
-int max_capture_num = 100;
-char address[30];
-char head[]= "./first_test/s";
-char end[]=".data";
+
 	/* Make sure usage is correct */
-	//check_usage(argc, argv);
+	check_usage(argc, argv);
 
-	
+	/* Open and check log file */
+	out = open_file(argv[1], "w");
 
-
-	/* Poll socket forever waiting for a message */
-		printf("now the location point number is %d\n",point_count);
-		sprintf(str_point_count,"%d",point_count);
-		strcpy(address,head);
-		strcat(address,str_point_count);
-		strcat(address,end);
-		printf("now the point data address is %s\n",address);
-
-while(1)
-{	
-	scanf("%s",input);
-	input_num = atoi(input);
-	memset(input, 0, sizeof(input));
-	if(input_num == 0)
-	{
-		printf("the data sampling end\n");
-		break;
-	} 
-	if(input_num == 2)
-	{
-		printf("continue to the next point\n");
-		continue;
-	}
-	if(input_num == 1)
-	{
-		printf("starting the sampling\n");
-		out = open_file(address, "w");
 	/* Setup the socket */
 	sock_fd = socket(PF_NETLINK, SOCK_DGRAM, NETLINK_CONNECTOR);
 	if (sock_fd == -1)
@@ -107,57 +72,34 @@ while(1)
 
 	/* Set up the "caught_signal" function as this program's sig handler */
 	signal(SIGINT, caught_signal);
+
+	/* Poll socket forever waiting for a message */
 	while (1)
 	{
-
-
-		
-		/* Open and check log file */
-		
 		/* Receive from socket with infinite timeout */
 		ret = recv(sock_fd, buf, sizeof(buf), 0);
 		if (ret == -1)
 			exit_program_err(-1, "recv");
 		/* Pull out the message portion and print some stats */
 		cmsg = NLMSG_DATA(buf);
-
-
 		if (count % SLOW_MSG_CNT == 0)
-			printf("received %d bytes: id: %d val: %d seq: %d clen: %d count %d\n", cmsg->len, cmsg->id.idx, cmsg->id.val, cmsg->seq, cmsg->len, count);
+			printf("received %d bytes: id: %d val: %d seq: %d clen: %d count %d\n ", cmsg->len, cmsg->id.idx, cmsg->id.val, cmsg->seq, cmsg->len,count);
 		/* Log the data to file */
 		l = (unsigned short) cmsg->len;
 		l2 = htons(l);
 		fwrite(&l2, 1, sizeof(unsigned short), out);
 		ret = fwrite(cmsg->data, 1, l, out);
-
-		if (count == max_capture_num)
+		if (count  == 10)
 		{
 			printf("wrote %d bytes [msgcnt=%u]\n", ret, count);
 			break;
 		}		
-		count++;
+		++count;
 		if (ret != l)
 			exit_program_err(1, "fwrite");
-
-		
-
 	}
-		count=0;
-		exit_program(0);
-		point_count++;
-		printf("now the location point number is %d\n",point_count);
-		memset(address, 0, sizeof(address)); 
-		memset(str_point_count, 0, sizeof(str_point_count)); 
-		sprintf(str_point_count,"%d",point_count);
-		strcpy(address,head);
-		strcat(address,str_point_count);
-		strcat(address,end);
-		printf("now the point data address is %s\n",address);
-	}
-}
-	
-	printf("end the sampling\n");
-	
+
+	exit_program(0);
 	return 0;
 }
 
@@ -199,7 +141,7 @@ void exit_program(int code)
 		close(sock_fd);
 		sock_fd = -1;
 	}
-	//exit(code);
+	exit(code);
 }
 
 void exit_program_err(int code, char* func)
